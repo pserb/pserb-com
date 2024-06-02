@@ -24,17 +24,7 @@ export default async function RootLayout({
           fontSans.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <div className="container bg-background text-foreground p-6 max-w-5xl">
-            {children}
-          </div>
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )

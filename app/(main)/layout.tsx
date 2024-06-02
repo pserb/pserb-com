@@ -8,6 +8,7 @@ import { Suspense } from 'react'
 
 import { Footer } from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'
+import { ThemeProvider } from '@/components/shared/shadcn/theme-provider'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
 
@@ -29,9 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
           default: homePage.heading || 'Personal website',
         }
       : undefined,
-    description: homePage?.blurb
-      ? homePage?.blurb
-      : undefined,
+    description: homePage?.blurb ? homePage?.blurb : undefined,
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },
@@ -49,7 +48,19 @@ export default async function IndexRoute({
 }) {
   return (
     <>
-      <Suspense>{children}</Suspense>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Navbar />
+        <Suspense>
+          <div className="container bg-background text-foreground p-6 max-w-5xl">
+            {children}
+          </div>
+        </Suspense>
+      </ThemeProvider>
 
       {draftMode().isEnabled && <LiveVisualEditing />}
     </>
