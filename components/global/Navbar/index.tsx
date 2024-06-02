@@ -1,17 +1,47 @@
-import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
+"use client";
 
-import { loadSettings } from '@/sanity/loader/loadQuery'
+import * as React from "react";
 
-import NavbarLayout from './NavbarLayout'
-const NavbarPreview = dynamic(() => import('./NavbarPreview'))
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import { ModeToggle } from "@/components/shared/shadcn/mode-toggle";
 
-export async function Navbar() {
-  const initial = await loadSettings()
-
-  if (draftMode().isEnabled) {
-    return <NavbarPreview initial={initial} />
-  }
-
-  return <NavbarLayout data={initial.data} />
+export function Navbar() {
+  return (
+    <div className="container max-w-5xl flex justify-between items-center p-2 sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <Link href="/" legacyBehavior passHref>
+              <NavigationMenuLink className={`border ${navigationMenuTriggerStyle()}`}>
+                Home
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/projects" legacyBehavior passHref>
+              <NavigationMenuLink className={`border ${navigationMenuTriggerStyle()}`}>
+                Projects
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+      <span className="justify-end">
+        <ModeToggle />
+      </span>
+    </div>
+  );
 }
+
+export default Navbar;

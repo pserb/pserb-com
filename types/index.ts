@@ -30,10 +30,9 @@ export interface ShowcaseProject {
 // Page payloads
 
 export interface HomePagePayload {
-  footer?: PortableTextBlock[]
-  overview?: PortableTextBlock[]
-  showcaseProjects?: ShowcaseProject[]
-  title?: string
+  supraheading?: string
+  heading?: string
+  blurb?: string
 }
 
 export interface PagePayload {

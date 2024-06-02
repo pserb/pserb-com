@@ -10,76 +10,36 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
-      name: 'title',
-      description: 'This field is the title of your personal website.',
-      title: 'Title',
+      name: 'supraheading',
+      title: 'Supraheading',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'heading',
+      description:
+        'This field is the title (and heading) of your personal website.',
+      title: 'Heading',
       type: 'string',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'overview',
+      name: 'blurb',
       description:
-        'Used both for the <meta> description tag for SEO, and the personal website subheader.',
+        'Used both for the <meta> description tag for SEO, and the personal website blurb.',
       title: 'Description',
-      type: 'array',
-      of: [
-        // Paragraphs
-        defineArrayMember({
-          lists: [],
-          marks: {
-            annotations: [
-              {
-                name: 'link',
-                type: 'object',
-                title: 'Link',
-                fields: [
-                  {
-                    name: 'href',
-                    type: 'url',
-                    title: 'Url',
-                  },
-                ],
-              },
-            ],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
-              },
-              {
-                title: 'Strong',
-                value: 'strong',
-              },
-            ],
-          },
-          styles: [],
-          type: 'block',
-        }),
-      ],
-      validation: (rule) => rule.max(155).required(),
-    }),
-    defineField({
-      name: 'showcaseProjects',
-      title: 'Showcase projects',
-      description:
-        'These are the projects that will appear first on your landing page.',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'reference',
-          to: [{ type: 'project' }],
-        }),
-      ],
+      type: 'string',
+      validation: (rule) => rule.required(),
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      heading: 'heading',
     },
-    prepare({ title }) {
+    prepare({ heading }) {
       return {
         subtitle: 'Home',
-        title,
+        heading,
       }
     },
   },
