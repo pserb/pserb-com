@@ -16,17 +16,17 @@ export default async function IndexRoute() {
     return <HomePagePreview initial={initial} />
   }
 
-  if (!initial.data) {
-    return (
-      <div className="text-center">
-        You don&rsquo;t have a homepage yet,{' '}
-        <Link href={`${studioUrl}/desk/home`} className="underline">
-          create one now
-        </Link>
-        !
-      </div>
-    )
-  }
+  // if (!initial.data) {
+  //   return (
+  //     <div className="text-center">
+  //       You don&rsquo;t have a homepage yet,{' '}
+  //       <Link href={`${studioUrl}/desk/home`} className="underline">
+  //         create one now
+  //       </Link>
+  //       !
+  //     </div>
+  //   )
+  // }
 
   return <HomePage data={initial.data} />
 }

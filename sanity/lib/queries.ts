@@ -9,6 +9,7 @@ export const homePageQuery = groq`
   }
 `
 
+// TODO: NOT USED
 export const pagesBySlugQuery = groq`
   *[_type == "page" && slug.current == $slug][0] {
     _id,
@@ -19,21 +20,33 @@ export const pagesBySlugQuery = groq`
   }
 `
 
-export const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug][0] {
+export const projectsPageQuery = groq`
+  *[_type == "project"] {
     _id,
-    client,
-    coverImage,
+    slug,
+    heading,
+    subheading,
+    blurb,
     description,
-    duration,
-    overview,
-    site,
-    "slug": slug.current,
-    tags,
-    title,
+    image,
+    cards,
   }
 `
 
+export const projectBySlugQuery = groq`
+  *[_type == "project" && slug.current == $slug][0] {
+    _id,
+    heading,
+    "slug": slug.current,
+    subheading,
+    blurb,
+    description,
+    image,
+    cards,
+  }
+`
+
+// TODO: NOT USED
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
     footer,

@@ -1,12 +1,11 @@
-import '@/styles/index.css'
-
 import type { Metadata, Viewport } from 'next'
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { Suspense } from 'react'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-import { Footer } from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'
 import { ThemeProvider } from '@/components/shared/shadcn/theme-provider'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
@@ -17,12 +16,12 @@ const LiveVisualEditing = dynamic(
 )
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ data: settings }, { data: homePage }] = await Promise.all([
-    loadSettings(),
+  const [{ data: homePage }] = await Promise.all([
+    // loadSettings(),
     loadHomePage(),
   ])
 
-  const ogImage = urlForOpenGraphImage(settings?.ogImage)
+  // const ogImage = urlForOpenGraphImage(settings?.ogImage)
   return {
     title: homePage?.heading
       ? {
@@ -31,15 +30,13 @@ export async function generateMetadata(): Promise<Metadata> {
         }
       : undefined,
     description: homePage?.blurb ? homePage?.blurb : undefined,
-    openGraph: {
-      images: ogImage ? [ogImage] : [],
-    },
+    // openGraph: {
+    //   images: ogImage ? [ogImage] : [],
+    // },
   }
 }
 
-export const viewport: Viewport = {
-  themeColor: '#000',
-}
+const inter = Inter({ subsets: ['latin'] })
 
 export default async function IndexRoute({
   children,
@@ -47,22 +44,24 @@ export default async function IndexRoute({
   children: React.ReactNode
 }) {
   return (
-    <>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <Navbar />
-        <Suspense>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {/* <Suspense> */}
           <div className="container bg-background text-foreground p-6 max-w-5xl">
             {children}
           </div>
-        </Suspense>
-      </ThemeProvider>
+          {/* </Suspense> */}
+        </ThemeProvider>
+      </body>
 
       {draftMode().isEnabled && <LiveVisualEditing />}
-    </>
+    </html>
   )
 }

@@ -18,38 +18,9 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
   const { supraheading = "", heading = "", blurb = "" } = data ?? {}
 
   return (
-    // <div className="space-y-20">
-    //   {/* Header */}
-    //   {title && <Header centered title={title} description={overview} />}
-    //   {/* Showcase projects */}
-    //   {showcaseProjects && showcaseProjects.length > 0 && (
-    //     <div className="mx-auto max-w-[100rem] rounded-md border">
-    //       {showcaseProjects.map((project, key) => {
-    //         const href = resolveHref(project?._type, project?.slug)
-    //         if (!href) {
-    //           return null
-    //         }
-    //         return (
-    //           <Link
-    //             key={key}
-    //             href={href}
-    //             data-sanity={encodeDataAttribute?.([
-    //               'showcaseProjects',
-    //               key,
-    //               'slug',
-    //             ])}
-    //           >
-    //             <ProjectListItem project={project} odd={key % 2} />
-    //           </Link>
-    //         )
-    //       })}
-    //     </div>
-    //   )}
-    // </div>
     <div className="flex flex-col space-y-8">
       <div className="space-y-1">
-        {supraheading && <p className="text-lg text-muted-foreground">{supraheading}</p>}
-        {/* <p className="text-lg text-muted-foreground">{supraheading}</p> */}
+        <p className="text-lg text-muted-foreground">{supraheading}</p>
         <h1 className="text-4xl font-bold">{heading}</h1>
       </div>
       <div className="">

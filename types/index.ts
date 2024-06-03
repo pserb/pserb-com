@@ -1,12 +1,14 @@
 import type { PortableTextBlock } from 'next-sanity'
 import type { Image } from 'sanity'
 
+// TODO: NOT USED
 export interface MenuItem {
   _type: string
   slug?: string
   title?: string
 }
 
+// TODO: NOT USED
 export interface MilestoneItem {
   description?: string
   duration?: {
@@ -18,6 +20,7 @@ export interface MilestoneItem {
   title?: string
 }
 
+// TODO: NOT USED
 export interface ShowcaseProject {
   _type: string
   coverImage?: Image
@@ -35,6 +38,7 @@ export interface HomePagePayload {
   blurb?: string
 }
 
+// TODO: NOT USED
 export interface PagePayload {
   body?: PortableTextBlock[]
   name?: string
@@ -43,21 +47,35 @@ export interface PagePayload {
   slug?: string
 }
 
-export interface ProjectPayload {
-  client?: string
-  coverImage?: Image
-  description?: PortableTextBlock[]
-  duration?: {
-    start?: string
-    end?: string
-  }
-  overview?: PortableTextBlock[]
-  site?: string
+export type ProjectPayload = {
   slug: string
-  tags?: string[]
-  title?: string
-}
+  heading?: string;
+  subheading?: string;
+  blurb?: string;
+  description?: string;
+  image?: {
+    src: string;
+    hyperlink?: string;
+    alt: string;
+    height?: string;
+  };
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    content?: string;
+    stats?: Array<{
+      stat?: string;
+      description?: string;
+    }>;
+    buttons?: Array<{
+      text?: string;
+      link?: string;
+      variant?: "default" | "destructive" | "ghost" | "link" | "outline" | "secondary";
+    }>;
+  }>;
+};
 
+// TODO: NOT USED
 export interface SettingsPayload {
   footer?: PortableTextBlock[]
   menuItems?: MenuItem[]

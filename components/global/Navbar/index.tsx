@@ -23,14 +23,14 @@ export function Navbar() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
-              <NavigationMenuLink className={`border ${navigationMenuTriggerStyle()}`}>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Home
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/projects" legacyBehavior passHref>
-              <NavigationMenuLink className={`border ${navigationMenuTriggerStyle()}`}>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                 Projects
               </NavigationMenuLink>
             </Link>

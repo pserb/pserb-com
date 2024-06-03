@@ -1,5 +1,5 @@
 {
-  "name": "sanity-template-template-nextjs-personal-website",
+  "name": "pserb-com",
   "private": true,
   "scripts": {
     "build": "next build",
