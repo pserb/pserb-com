@@ -35,13 +35,15 @@ function ClientRenderImage({ image }: {image: image}) {
     return () => clearTimeout(timer)
   }, [isLoaded])
 
+  const imgHeight = image.height + "px"
+
   return (
-    <div className="relative" style={{ height: image.height + 'px' }}>
+    <div className="relative" style={{ height: imgHeight }}>
       <a href={image.hyperlink}>
         {showSkeleton && (
           <div
             className="absolute inset-0 flex items-center justify-center"
-            style={{ height: image.height + 'px' }}
+            style={{ height: imgHeight }}
           >
             <Skeleton className="w-1/2 h-full" />
           </div>

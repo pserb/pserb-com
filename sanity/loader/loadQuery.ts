@@ -8,8 +8,8 @@ import {
   homePageQuery,
   pagesBySlugQuery,
   projectBySlugQuery,
-  projectsPageQuery,
   settingsQuery,
+  projectsPageQuery,
 } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import {
@@ -17,6 +17,7 @@ import {
   PagePayload,
   ProjectPayload,
   SettingsPayload,
+  ProjectsPagePayload,
 } from '@/types'
 
 const serverClient = client.withConfig({
@@ -79,15 +80,6 @@ export function loadHomePage() {
   )
 }
 
-export function loadProjectsPage() {
-  return loadQuery<ProjectPayload | null>(
-    projectsPageQuery,
-    { },
-    { next: { tags: ['project'] } },
-  )
-
-}
-
 export function loadProject(slug: string) {
   return loadQuery<ProjectPayload | null>(
     projectBySlugQuery,
@@ -99,7 +91,15 @@ export function loadProject(slug: string) {
 export function loadPage(slug: string) {
   return loadQuery<PagePayload | null>(
     pagesBySlugQuery,
-    { },
+    {},
     { next: { tags: [`page:${slug}`] } },
+  )
+}
+
+export function loadProjectsPage() {
+  return loadQuery<ProjectsPagePayload | null>(
+    projectsPageQuery,
+    {},
+    { next: { tags: ['projects'] } },
   )
 }

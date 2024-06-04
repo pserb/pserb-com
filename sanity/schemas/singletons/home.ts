@@ -34,12 +34,12 @@ export default defineType({
   ],
   preview: {
     select: {
-      heading: 'heading',
+      title: 'heading',
     },
-    prepare({ heading }) {
+    prepare({ title }) {
       return {
         subtitle: 'Home',
-        heading,
+        title,
       }
     },
   },

@@ -20,19 +20,6 @@ export const pagesBySlugQuery = groq`
   }
 `
 
-export const projectsPageQuery = groq`
-  *[_type == "project"] {
-    _id,
-    slug,
-    heading,
-    subheading,
-    blurb,
-    description,
-    image,
-    cards,
-  }
-`
-
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
@@ -57,4 +44,18 @@ export const settingsQuery = groq`
     },
     ogImage,
   }
+`
+
+export const projectsPageQuery = groq`
+*[_type == "projects"][0]{
+  _id,
+  "slug": slug.current,
+  projectList[]->{
+    _type,
+    "slug": slug.current,
+    heading,
+    subheading,
+    blurb
+  }
+}
 `

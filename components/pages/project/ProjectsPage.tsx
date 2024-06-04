@@ -1,36 +1,35 @@
-import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import type { ProjectPayload } from '@/types'
-import {
-  ProjectsPageBreadcrumb,
-  ProjectsPageComponent,
-} from '@/components/pages/project/projects-page-component'
+import { ProjectPayload, ProjectsPagePayload } from '@/types'
+import { EncodeDataAttributeCallback } from '@sanity/react-loader'
+import { Card } from '@sanity/ui'
+import ProjectsPageComponent from './projects-page-component'
 
-export interface ProjectPageProps {
-  data: ProjectPayload | null
+export interface ProjectsPageProps {
+  data: ProjectsPagePayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
-export function ProjectsPage({ data, encodeDataAttribute }: ProjectPageProps) {
-  const { slug, heading, subheading, blurb, description, image, cards } =
-    data ?? {}
+export default function ProjectsPage({
+  data,
+  encodeDataAttribute,
+}: ProjectsPageProps) {
+  const { projectList = [] } = data ?? {}
 
   return (
-    <>
-      <ProjectsPageBreadcrumb />
-      <div className="flex flex-col mt-6 space-y-16">
-        {/* for each project in the list, construct a ProjectComponent */}
-        {Array.isArray(data) &&
-          data.map((project: any) => (
-            <ProjectsPageComponent
-              link={project.slug.current}
-              heading={project.heading}
-              subheading={project.subheading}
-              blurb={project.blurb}
-            />
-          ))}
-      </div>
-    </>
+    <div className="flex flex-col mt-6 space-y-12">
+      {projectList &&
+        projectList.map((project: ProjectPayload) => {
+          if (project) {
+            return (
+              <ProjectsPageComponent
+                link={project.slug!}
+                heading={project.heading!}
+                subheading={project.subheading!}
+                blurb={project.blurb!}
+              />
+            )
+          }
+          return null;
+        })}
+    </div>
   )
 }
-
-export default ProjectsPage

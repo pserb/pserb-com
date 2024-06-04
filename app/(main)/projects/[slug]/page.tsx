@@ -43,9 +43,9 @@ export function generateStaticParams() {
 export default async function ProjectSlugRoute({ params }: Props) {
   const initial = await loadProject(params.slug)
 
-  if (draftMode().isEnabled) {
-    return <ProjectSlugPreview params={params} initial={initial} />
-  }
+  // if (draftMode().isEnabled) {
+  //   return <ProjectSlugPreview params={params} initial={initial} />
+  // }
 
   if (!initial.data) {
     notFound()

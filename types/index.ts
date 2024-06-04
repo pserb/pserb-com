@@ -49,35 +49,45 @@ export interface PagePayload {
 
 export type ProjectPayload = {
   slug: string
-  heading?: string;
-  subheading?: string;
-  blurb?: string;
-  description?: string;
+  heading?: string
+  subheading?: string
+  blurb?: string
+  description?: string
   image?: {
-    src: string;
-    hyperlink?: string;
-    alt: string;
-    height?: string;
-  };
+    src: string
+    hyperlink?: string
+    alt: string
+    height?: string
+  }
   cards?: Array<{
-    title?: string;
-    description?: string;
-    content?: string;
+    title?: string
+    description?: string
+    content?: string
     stats?: Array<{
-      stat?: string;
-      description?: string;
-    }>;
+      stat?: string
+      description?: string
+    }>
     buttons?: Array<{
-      text?: string;
-      link?: string;
-      variant?: "default" | "destructive" | "ghost" | "link" | "outline" | "secondary";
-    }>;
-  }>;
-};
+      text?: string
+      link?: string
+      variant?:
+        | 'default'
+        | 'destructive'
+        | 'ghost'
+        | 'link'
+        | 'outline'
+        | 'secondary'
+    }>
+  }>
+}
 
 // TODO: NOT USED
 export interface SettingsPayload {
   footer?: PortableTextBlock[]
   menuItems?: MenuItem[]
   ogImage?: Image
+}
+
+export interface ProjectsPagePayload {
+  projectList?: ProjectPayload[]
 }

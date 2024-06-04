@@ -47,7 +47,6 @@ export default defineType({
         { type: "string", name: "alt", title: "Alt Text" },
         { type: "string", name: "height", title: "Height in px" },
       ],
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "cards",
