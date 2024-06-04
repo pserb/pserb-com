@@ -50,7 +50,7 @@ export function ProjectsPageComponent({
 }) {
   return (
     <Link href={"projects/" + link}>
-      <div className="flex flex-col justify-between space-y-4 p-4 border rounded-lg hover:bg-secondary">
+      <div className="flex flex-col justify-between space-y-4 p-4 border rounded-lg hover:bg-secondary shadow-inner dark:shadow-white/10 dark:shadow-[inset_0_-2px_4px_0_rgba(0,0,0,0.2)]">
         {/* this div acts as a card */}
         <div className="grid">
           <span className="justify-self-end col-start-1 row-start-1 text-muted-foreground">

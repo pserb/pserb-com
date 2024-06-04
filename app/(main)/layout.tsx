@@ -3,8 +3,15 @@ import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { Suspense } from 'react'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import {
+  Inter,
+  Lexend_Deca,
+  Kode_Mono,
+  IBM_Plex_Mono,
+  JetBrains_Mono,
+} from 'next/font/google'
+import { GeistMono } from 'geist/font/mono'
+import '@/styles/globals.css'
 
 import { Navbar } from '@/components/global/Navbar'
 import { ThemeProvider } from '@/components/shared/shadcn/theme-provider'
@@ -37,6 +44,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const inter = Inter({ subsets: ['latin'] })
+const lexendDeca = Lexend_Deca({ subsets: ['latin'] })
+const kodeMono = Kode_Mono({ subsets: ['latin'] })
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: '300',
+})
+const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'] })
 
 export default async function IndexRoute({
   children,
@@ -45,7 +59,7 @@ export default async function IndexRoute({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={ibmPlexMono.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
