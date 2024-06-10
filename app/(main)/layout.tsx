@@ -59,7 +59,7 @@ export default async function IndexRoute({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={ibmPlexMono.className}>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -67,11 +67,9 @@ export default async function IndexRoute({
           disableTransitionOnChange
         >
           <Navbar />
-          {/* <Suspense> */}
           <div className="container bg-background text-foreground p-6 max-w-5xl">
-            {children}
+            <div>{children}</div>
           </div>
-          {/* </Suspense> */}
         </ThemeProvider>
       </body>
 
